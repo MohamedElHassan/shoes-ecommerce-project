@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import { Cart, Products, Dashboard } from './containers'
-import { Register, Login, SingleProductPage } from './components'
+import { Register, Login, SingleProductPage, Error404 } from './components'
 import Layout from './Layout'
+import './App.scss'
 function App() {
   return (
     <>
@@ -14,10 +15,10 @@ function App() {
             <Route path="/product/:id" element={<SingleProductPage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
           </Route>
-          <Route path="*" element={<h2>Error 404</h2>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </>

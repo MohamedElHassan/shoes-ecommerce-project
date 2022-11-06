@@ -1,0 +1,21 @@
+.products-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-filter {
+  width: 20%;
+}
+.products {
+  padding: 1rem;
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1rem;
+  flex-wrap: wrap;
+  // .product {
+  //   width: 200px;
+  //   height: 200px;
+  // }
+}

@@ -1,0 +1,22 @@
+.section__padding {
+  padding: 2rem 4rem;
+}
+.section__margin {
+  margin: 4rem 0;
+}
+.primary-btn {
+  text-align: center;
+  padding: 0.8rem 2rem;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: transparent;
+    transform: scale(1.02);
+    color: var(--primary-color);
+  }
+}

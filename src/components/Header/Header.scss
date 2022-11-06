@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 0 !important;
+}
+.header-content {
+  h1 {
+    font-size: 70px;
+    font-weight: 500;
+    line-height: 65px;
+    color: var(--secondary-color);
+    span {
+      color: var(--primary-color);
+    }
+  }
+  p {
+    margin-top: 2rem;
+    text-align: left;
+    padding-right: 8rem;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 40px;
+    margin-bottom: 3rem;
+  }
+  .primary-btn {
+    svg {
+      width: 20px;
+      height: 10px;
+      padding-left: 0.6rem;
+    }
+  }
+}
+.header-img {
+  img {
+    object-fit: cover;
+  }
+}

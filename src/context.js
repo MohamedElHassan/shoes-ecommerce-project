@@ -5,6 +5,7 @@ const AppContext = createContext()
 
 const initialState = {
   loading: false,
+  searchValue: '',
   products: [],
   cart: [],
   total: 0,
@@ -15,6 +16,14 @@ const AppProvider = ({ children }) => {
   const getProducts = () => {
     dispatch({ type: 'GET_PRODUCTS', payload: products })
   }
+  const handlePriceRange = (priceRange) => {
+    dispatch({ type: 'GET_PRODUCTS', payload: products })
+    dispatch({ type: 'CHANGE_PRICE_RANGE', payload: priceRange })
+  }
+  const handleCategorySelect = (category) => {
+    dispatch({ type: 'GET_PRODUCTS', payload: products })
+    dispatch({ type: 'CHANGE_CATEGORY', payload: category })
+  }
   useEffect(() => {
     getProducts()
   }, [])
@@ -22,6 +31,8 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         ...state,
+        handlePriceRange,
+        handleCategorySelect,
       }}
     >
       {children}
