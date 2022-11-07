@@ -1,12 +1,15 @@
-import { useParams } from 'react-router-dom'
-import { FaHeart } from 'react-icons/fa'
-import './SingleProductPage.scss'
-import { products } from '../../data'
+import { useParams } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa';
+
+import { useGlobalContext } from '../../context';
+import { products } from '../../data';
+import './SingleProductPage.scss';
 const SingleProductPage = () => {
-  const params = useParams()
-  let paramsId = parseInt(params.id)
-  const product = products.filter((product) => product.id === paramsId)
-  const { name, price, category, image, description } = product[0]
+  const { addToCart } = useGlobalContext();
+  const params = useParams();
+  let paramsId = parseInt(params.id);
+  const product = products.filter((product) => product.id === paramsId);
+  const { name, price, category, image, description } = product[0];
   return (
     <>
       <div className="sp-product section__padding section__margin">
@@ -20,7 +23,11 @@ const SingleProductPage = () => {
           </div>
           <h3>${price}</h3>
           <p className="sp-product-description">{description}</p>
-          <button type="button" className="addToCart-btn primary-btn">
+          <button
+            type="button"
+            className="addToCart-btn primary-btn"
+            onClick={() => addToCart(product[0])}
+          >
             Add to cart
           </button>
           <button type="button" className="favorite-btn primary-btn">
@@ -29,7 +36,7 @@ const SingleProductPage = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SingleProductPage
+export default SingleProductPage;

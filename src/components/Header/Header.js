@@ -14,7 +14,7 @@ const Header = () => {
             Find your shoes from our various colllections. Here shoes are
             endless and profit it also endless.
           </p>
-          <Link className='primary-btn' to="/products">
+          <Link className="primary-btn" to="/products">
             Shop Now <FaChevronRight />
           </Link>
         </div>

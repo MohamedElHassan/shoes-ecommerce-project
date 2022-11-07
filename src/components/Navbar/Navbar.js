@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaCartArrowDown, FaSearch, FaUser } from 'react-icons/fa'
+import { FiMenu } from 'react-icons/fi'
+
 import './Navbar.scss'
 
 const Navbar = () => {
@@ -14,10 +16,10 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar section__padding">
-        <div className="img-logo">
+        <Link to='/' className="img-logo">
           {/* <img src={logo} alt="logo" /> */}
           <h2>Logo</h2>
-        </div>
+        </Link>
         <div className="navbar-links">
           <Link className={activePage === '/' ? 'active' : ''} to={'/'}>
             Home
@@ -48,6 +50,14 @@ const Navbar = () => {
             <FaUser />
           </Link>
         </div>
+        <menu className="mobile-menu">
+          {/* <div className="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div> */}
+          <FiMenu />
+        </menu>
       </nav>
     </>
   )

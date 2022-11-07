@@ -4,6 +4,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.img-logo {
+  text-decoration: none;
+  color:var(--secondary-color)
+}
 .navbar-links {
   a {
     position: relative;
@@ -28,6 +32,9 @@
       }
     }
   }
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 }
 .navbar-right {
   display: flex;
@@ -39,5 +46,13 @@
     &:hover {
       color: var(--secondary-color);
     }
+  }
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+.mobile-menu {
+  @media screen and (min-width: 900px) {
+    display: none;
   }
 }

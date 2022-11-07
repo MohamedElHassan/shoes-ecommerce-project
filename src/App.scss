@@ -1,5 +1,8 @@
 .section__padding {
   padding: 2rem 4rem;
+  @media screen and (max-width: 450px) {
+    padding: 2rem;
+  }
 }
 .section__margin {
   margin: 4rem 0;
@@ -17,6 +20,19 @@
   &:hover {
     background-color: transparent;
     transform: scale(1.02);
+    color: var(--primary-color);
+  }
+  @media screen and (max-width: 450px) {
+    padding: 0.6rem 1rem;
+  }
+}
+
+.section-title {
+  text-align: center;
+  h2 {
+    color: var(--secondary-color);
+  }
+  h4 {
     color: var(--primary-color);
   }
 }

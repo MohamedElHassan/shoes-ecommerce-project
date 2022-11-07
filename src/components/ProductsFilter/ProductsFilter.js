@@ -6,13 +6,14 @@ import './ProductsFilter.scss'
 const ProductsFilter = () => {
   const { handlePriceRange, handleCategorySelect } = useGlobalContext()
   const [category, setCategory] = useState('All')
-  const [priceRange, setPriceRange] = useState(1000)
+  const [priceRange, setPriceRange] = useState(999)
   const handleSubmit = (e) => {
     e.preventDefault()
   }
   return (
     <>
       <div className="product-filter">
+        <h3>Sort by Category</h3>
         <div className="category-select">
           <div
             className={`${category === 'All' ? 'active' : ''} category-btn`}
@@ -63,6 +64,8 @@ const ProductsFilter = () => {
             </div>
           </div>
         </div>
+        <h3>Sort by Price Range</h3>
+        <h4>From 0 to {priceRange}</h4>
         <form onSubmit={handleSubmit}>
           <label htmlFor="price-range">Price Range</label>
           <input

@@ -6,6 +6,10 @@
   flex-direction: column;
   text-decoration: none;
   color: var(--black-color);
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 .product-img {
   width: 100%;
