@@ -1,4 +1,4 @@
-import './Login.scss'
+import './Login.scss';
 
 const Login = () => {
   // هنا لو عاوزه تكتبي اي دالة او كود
@@ -13,10 +13,10 @@ const Login = () => {
         {/* for ---> htmlFor */}
         {/* onsubmit ---> onSubmit */}
         {/* عشان تكتبي كود JS بداخل ال JSX هتفتح قوسين كدا. زي مثلاً */}
-        {alert('ازيك يا ندى👍')}
+        {alert('هنا يبدأ شغل ندى👍')}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

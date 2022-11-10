@@ -8,6 +8,7 @@ const initialState = {
   searchValue: '',
   products: [],
   cartItems: [],
+  alert: { msg: '', show: false, type: '' },
   total: 0,
   amount: 0,
 };
@@ -27,9 +28,26 @@ const AppProvider = ({ children }) => {
   const addToCart = (product) => {
     dispatch({ type: 'ADD_TO_CART', payload: product });
   };
+  const removeCartItem = (id) => {
+    dispatch({ type: 'REMOVE_CART_ITEM', payload: id });
+  };
+  const setTotalAndAmount = () => {
+    dispatch({ type: 'GET_TOTAL_AND_AMOUNT' });
+  };
+  const toggleAmount = (type, id) => {
+    dispatch({ type: 'TOGGLE_AMOUNT', payload: { type, id } });
+  };
+  const setAlert = (alert) => {
+    dispatch({ type: 'SET_ALERT', payload: alert });
+  };
+  useEffect(() => {
+    setTotalAndAmount();
+  }, [state.cartItems]);
+
   useEffect(() => {
     getProducts();
   }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -37,6 +55,9 @@ const AppProvider = ({ children }) => {
         handlePriceRange,
         handleCategorySelect,
         addToCart,
+        removeCartItem,
+        toggleAmount,
+        setAlert,
       }}
     >
       {children}

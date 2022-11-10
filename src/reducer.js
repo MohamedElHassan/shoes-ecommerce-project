@@ -21,10 +21,84 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === 'ADD_TO_CART') {
-    console.log(state.cartItems);
-    return { ...state, cartItems: [...state.cartItems, action.payload] };
+    let myCartItem = {
+      ...action.payload,
+      cartID: new Date().getTime().toString(),
+      amount: 1,
+    };
+    let found = state.cartItems.find(
+      (cartItem) => cartItem.id === myCartItem.id
+    );
+    if (found) {
+      const newCartItems = state.cartItems.map((cartItem) => {
+        if (cartItem.id === found.id) {
+          return { ...cartItem, amount: cartItem.amount + 1 };
+        }
+        return cartItem;
+      });
+
+      return {
+        ...state,
+        cartItems: newCartItems,
+      };
+    } else {
+      return {
+        ...state,
+        cartItems: [...state.cartItems, myCartItem],
+      };
+    }
+    // let newCartItems = state.cartItems
+    //   ? state.cartItems.map((cartItem) => {
+    //       if (cartItem.id === myCartItem.id) {
+    //         myCartItem = { ...myCartItem, amount: cartItem.amount + 1 };
+    //         return { ...cartItem, amount: myCartItem.amount + 1 };
+    //       }
+    //       return cartItem;
+    //     })
+    // : [{}];
+    // console.log(newCartItems);
   }
-  return state;
+  if (action.type === 'REMOVE_CART_ITEM') {
+    let newCartItems = state.cartItems.filter(
+      (cartItem) => cartItem.cartID !== action.payload
+    );
+    return { ...state, cartItems: newCartItems };
+  }
+  if (action.type === 'TOGGLE_AMOUNT') {
+    let newCartItems = state.cartItems
+      .map((item) => {
+        if (item.cartID === action.payload.id) {
+          return {
+            ...item,
+            amount:
+              action.payload.type === 'increase'
+                ? item.amount + 1
+                : item.amount - 1,
+          };
+        }
+        return item;
+      })
+      .filter((cartItem) => cartItem.amount > 0);
+    return { ...state, cartItems: newCartItems };
+  }
+  if (action.type === 'GET_TOTAL_AND_AMOUNT') {
+    let { total, amount } = state.cartItems.reduce(
+      (cartTotal, cartItem) => {
+        const { amount, price } = cartItem;
+        const itemTotal = price * amount;
+        cartTotal.amount += amount;
+        cartTotal.total += itemTotal;
+        return cartTotal;
+      },
+      {
+        total: 0,
+        amount: 0,
+      }
+    );
+    total = parseFloat(total.toFixed(2));
+    return { ...state, total, amount };
+  }
+  throw new Error('No matching action type');
 };
 
 export default reducer;

@@ -65,7 +65,7 @@ const ProductsFilter = () => {
           </div>
         </div>
         <h3>Sort by Price Range</h3>
-        <h4>From 0 to {priceRange}</h4>
+        <h4>From $0 to ${priceRange}</h4>
         <form onSubmit={handleSubmit}>
           <label htmlFor="price-range">Price Range</label>
           <input
