@@ -91,14 +91,20 @@ const Cart = () => {
               <h5>${7}</h5>
             </div>
             <form className="promo-code">
-              <label htmlFor="promo-code">Have a promo code ?</label>
-              <input id="promo-code" type="text" placeholder="Enter Code" />
+              <div className="form-data">
+                <label htmlFor="promo-code">Have a promo code ?</label>
+                <br />
+                <input id="promo-code" type="text" placeholder="Enter Code" />
+              </div>
               <button type="submit">Apply</button>
             </form>
             <div className="total">
               <p>Total</p>
               <h5>${total}</h5>
             </div>
+            <Link className="checkout-btn" to="/checkout">
+              Proceed to checkout
+            </Link>
           </div>
         </div>
       </div>
