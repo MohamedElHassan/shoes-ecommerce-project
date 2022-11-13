@@ -30,7 +30,12 @@ const SingleProductPage = () => {
           >
             Add to cart
           </button>
-          <button type="button" className="favorite-btn primary-btn">
+
+          <button
+            type="button"
+            className="favorite-btn primary-btn"
+            onClick={() => alert('Love me❤️')}
+          >
             Favorite <FaHeart />
           </button>
         </div>

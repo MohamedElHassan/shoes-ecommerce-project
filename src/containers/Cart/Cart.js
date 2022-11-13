@@ -1,7 +1,14 @@
 import { useGlobalContext } from '../../context';
-import { FaRegTrashAlt, FaChevronUp, FaChevronDown } from 'react-icons/fa';
-import './Cart.scss';
+import {
+  FaRegTrashAlt,
+  FaChevronUp,
+  FaChevronDown,
+  FaHeart,
+} from 'react-icons/fa';
+import { TopPicksProducts } from '../../components';
 import { Link } from 'react-router-dom';
+
+import './Cart.scss';
 const Cart = () => {
   const { cartItems, total, removeCartItem, toggleAmount, amount } =
     useGlobalContext();
@@ -38,12 +45,6 @@ const Cart = () => {
                     </h5>
                     <div className="btns">
                       <button
-                        onClick={() => removeCartItem(cartID)}
-                        className="remove-btn"
-                      >
-                        <FaRegTrashAlt />
-                      </button>
-                      <button
                         onClick={() => toggleAmount('decrease', cartID)}
                         className="decrease-btn"
                       >
@@ -55,8 +56,22 @@ const Cart = () => {
                       >
                         <FaChevronUp />
                       </button>
+                      <div className="amount">Quantity : {amount}</div>
                     </div>
-                    <div className="amount">Amount : {amount}</div>
+                    <div className="remove-love-btns">
+                      <button
+                        onClick={() => alert('Love me❤️')}
+                        className="love-btn"
+                      >
+                        <FaHeart />
+                      </button>
+                      <button
+                        onClick={() => removeCartItem(cartID)}
+                        className="remove-btn"
+                      >
+                        <FaRegTrashAlt />
+                      </button>
+                    </div>
                   </div>
                   <div className="item-price">
                     <h3>${price}</h3>
@@ -65,9 +80,29 @@ const Cart = () => {
               );
             })}
           </div>
-          <div className="cart-summary">Total : ${total}</div>
+          <div className="cart-summary">
+            <h3>Summary</h3>
+            <div className="sub-total">
+              <p>Subtotal</p>
+              <h5>${total}</h5>
+            </div>
+            <div className="shipping-cost">
+              <p>Shipping cost</p>
+              <h5>${7}</h5>
+            </div>
+            <form className="promo-code">
+              <label htmlFor="promo-code">Have a promo code ?</label>
+              <input id="promo-code" type="text" placeholder="Enter Code" />
+              <button type="submit">Apply</button>
+            </form>
+            <div className="total">
+              <p>Total</p>
+              <h5>${total}</h5>
+            </div>
+          </div>
         </div>
       </div>
+      <TopPicksProducts />
     </>
   );
 };

@@ -2,6 +2,9 @@ const reducer = (state, action) => {
   if (action.type === 'GET_PRODUCTS') {
     return { ...state, products: action.payload };
   }
+  if (action.type === 'GET_CART_ITEMS') {
+    return { ...state, cartItems: action.payload };
+  }
   if (action.type === 'CHANGE_PRICE_RANGE') {
     let newProducts = state.products.filter(
       (product) => product.price <= action.payload
@@ -37,11 +40,18 @@ const reducer = (state, action) => {
         return cartItem;
       });
 
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+
       return {
         ...state,
         cartItems: newCartItems,
       };
     } else {
+      localStorage.setItem(
+        'cartItems',
+        JSON.stringify([...state.cartItems, myCartItem])
+      );
+
       return {
         ...state,
         cartItems: [...state.cartItems, myCartItem],
@@ -62,6 +72,8 @@ const reducer = (state, action) => {
     let newCartItems = state.cartItems.filter(
       (cartItem) => cartItem.cartID !== action.payload
     );
+    localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+
     return { ...state, cartItems: newCartItems };
   }
   if (action.type === 'TOGGLE_AMOUNT') {
@@ -79,6 +91,7 @@ const reducer = (state, action) => {
         return item;
       })
       .filter((cartItem) => cartItem.amount > 0);
+    localStorage.setItem('cartItems', JSON.stringify(newCartItems));
     return { ...state, cartItems: newCartItems };
   }
   if (action.type === 'GET_TOTAL_AND_AMOUNT') {

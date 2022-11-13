@@ -12,15 +12,23 @@ const initialState = {
   total: 0,
   amount: 0,
 };
+
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const getProducts = () => {
     dispatch({ type: 'GET_PRODUCTS', payload: products });
   };
+  const getCartItems = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    dispatch({ type: 'GET_CART_ITEMS', payload: cartItems });
+  };
   const handlePriceRange = (priceRange) => {
     dispatch({ type: 'GET_PRODUCTS', payload: products });
     dispatch({ type: 'CHANGE_PRICE_RANGE', payload: priceRange });
   };
+  // const topPicksProducts = ()=> {
+  //   dispatch({ type: 'TOP_PICKS_PRODUCTS', payload: products });
+  // }
   const handleCategorySelect = (category) => {
     dispatch({ type: 'GET_PRODUCTS', payload: products });
     dispatch({ type: 'CHANGE_CATEGORY', payload: category });
@@ -46,6 +54,7 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     getProducts();
+    getCartItems();
   }, []);
 
   return (

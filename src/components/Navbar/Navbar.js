@@ -42,11 +42,19 @@ const Navbar = () => {
         </div>
         <div className="navbar-right">
           <Link className="cart-btn" to={'/cart'}>
-            <FaCartArrowDown />
+            <FaCartArrowDown
+              className={activePage === '/cart' ? 'active' : null}
+            />
             {amount !== 0 ? <span>{amount}</span> : null}
           </Link>
           <Link className="user-btn" to={'/register'}>
-            <FaUser />
+            <FaUser
+              className={
+                activePage === '/register' || activePage === '/login'
+                  ? 'active'
+                  : null
+              }
+            />
           </Link>
         </div>
       </nav>
@@ -86,7 +94,9 @@ const Navbar = () => {
               to={'/cart'}
               onClick={() => setToggleMenu(!toggleMenu)}
             >
-              <FaCartArrowDown />
+              <FaCartArrowDown
+                className={activePage === '/cart' ? 'active' : null}
+              />
               {amount !== 0 ? <span>{amount}</span> : null}
             </Link>
             <Link
@@ -94,7 +104,13 @@ const Navbar = () => {
               to={'/register'}
               onClick={() => setToggleMenu(!toggleMenu)}
             >
-              <FaUser />
+              <FaUser
+                className={
+                  activePage === '/register' || activePage === '/login'
+                    ? 'active'
+                    : null
+                }
+              />
             </Link>
           </div>
         </div>
