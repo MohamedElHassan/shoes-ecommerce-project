@@ -1,5 +1,6 @@
 const products = [
   {
+    rating:4.5,
     id: 1,
     name: 'Man Shoes',
     image:
@@ -11,6 +12,7 @@ const products = [
     brand: 'Nike',
   },
   {
+    rating:4.5,
     id: 2,
     name: 'Women Shoes',
     image:
@@ -22,6 +24,7 @@ const products = [
     brand: 'Rebook',
   },
   {
+    rating:4.5,
     id: 3,
     name: 'Kid Shoes',
     image:
@@ -33,6 +36,7 @@ const products = [
     brand: 'Nike',
   },
   {
+    rating:4.5,
     id: 4,
     name: 'Man Nike Shoes',
     image:
@@ -44,6 +48,7 @@ const products = [
     brand: 'Nike',
   },
   {
+    rating:4.5,
     id: 5,
     name: 'Man Nike Shoes',
     image:
@@ -55,6 +60,7 @@ const products = [
     brand: 'Nike',
   },
   {
+    rating:4.5,
     id: 6,
     name: 'Women Nike Shoes',
     image:
@@ -65,6 +71,6 @@ const products = [
     category: 'Women',
     brand: 'Nike',
   },
-]
+];
 
-export { products }
+export { products };

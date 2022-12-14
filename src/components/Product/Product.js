@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import './Product.scss'
-
-const Product = ({ id, name, price, category, image }) => {
+import { Link } from 'react-router-dom';
+import './Product.scss';
+import images from '../../images';
+const Product = ({ id, name, price, category, image, rating }) => {
   return (
     <>
       <Link to={`/product/${id}`} className="product">
@@ -15,9 +15,10 @@ const Product = ({ id, name, price, category, image }) => {
         <div className="product-category">
           <p>{category}</p>
         </div>
+        {}
       </Link>
     </>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

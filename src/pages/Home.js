@@ -1,4 +1,4 @@
-import { FeaturedProducts, Categories, Brands, Header } from '../components'
+import { FeaturedProducts, Categories, Brands, Header, TopSellingProducts } from '../components'
 
 const Home = () => {
   return (
@@ -7,6 +7,7 @@ const Home = () => {
       <Categories />
       <FeaturedProducts />
       <Brands />
+      <TopSellingProducts />
     </>
   )
 }

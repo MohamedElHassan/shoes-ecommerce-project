@@ -1,9 +1,10 @@
-import './Register.scss';
-import images from '../../images';
 import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
+
+import './Register.scss';
 const Register = () => {
   // هنا لو عاوزه تكتبي اي دالة او كود
-
+  {fetch()}
   return (
     <>
       {/* هنا اكتبي كود ال HTML عادي جدا. */}
@@ -13,6 +14,7 @@ const Register = () => {
       {/* for ---> htmlFor */}
       {/* onsubmit ---> onSubmit */}
       {/* عشان تكتبي كود JS بداخل ال JSX هتفتح قوسين كدا. زي مثلاً */}
+      
       <div className="hero">
         <div className="form-box">
           <div className="button-box">
@@ -36,7 +38,7 @@ const Register = () => {
           </div>
           {/* <!-- ----------------------------Regiater Form----------------------------- --> */}
 
-          <form action="" id="register" className="input-group2">
+          <form  action="" id="register" className="input-group2">
             {/* <!-- ----------------------FirstName Register---------------------- --> */}
 
             <div className="name">
@@ -44,9 +46,9 @@ const Register = () => {
                 <label htmlFor="" className="input-label2">
                   First Name
                   <span>
-                    <i className="uil uil-user login-icon"></i>
+                    <Icon icon="uil-user" className="login-icon"></Icon>
                   </span>
-                  <input type="text" className="input-field2" placeholder="" />
+                  <input name='id' type="text" className="input-field2" placeholder="" />
                 </label>
               </div>
 
@@ -55,7 +57,7 @@ const Register = () => {
                 <label htmlFor="" className="input-label2">
                   Last Name
                   <span>
-                    <i className="uil uil-user login-icon"></i>
+                    <Icon icon="uil:user" className="login-icon"></Icon>
                   </span>
                   <input type="text" className="input-field2" placeholder="" />
                 </label>
@@ -66,7 +68,7 @@ const Register = () => {
               <label htmlFor="" className="input-label2">
                 Email
                 <span>
-                  <i className="uil uil-envelope-alt login-icon"></i>
+                  <Icon icon="uil:envelope-alt" className="login-icon"></Icon>
                 </span>
                 <input type="text" className="input-field" placeholder="" />
               </label>
@@ -78,7 +80,7 @@ const Register = () => {
                 <label htmlFor="" className="input-label2">
                   Password
                   <span>
-                    <i className="uil uil-eye-slash login-icon"></i>
+                    <Icon icon="uil-eye-slash" className="login-icon"></Icon>
                   </span>
                   <input
                     type="password"
@@ -92,7 +94,7 @@ const Register = () => {
                 <label htmlFor="" className="input-label2">
                   Confirm Password
                   <span>
-                    <i className="uil uil-eye-slash login-icon"></i>
+                    <Icon icon="uil-eye-slash" className="login-icon"></Icon>
                   </span>
                   <input
                     type="password"
@@ -109,7 +111,7 @@ const Register = () => {
             </button>
             <div className="account">
               You have already account
-              <a href="">Sign In</a>
+              <Link to='/login'>Sign In</Link>
             </div>
           </form>
         </div>

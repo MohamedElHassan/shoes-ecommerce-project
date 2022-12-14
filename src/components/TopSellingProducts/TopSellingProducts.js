@@ -1,7 +1,9 @@
-import './FeaturedProducts.scss';
-import { useGlobalContext } from '../../context';
+import React from 'react';
 
-const FeaturedProducts = () => {
+import { useGlobalContext } from '../../context';
+import './TopSellingProducts.scss';
+
+const TopSellingProducts = () => {
   const { products } = useGlobalContext();
   const myProducts = products
     .filter((product, index) => {
@@ -14,7 +16,8 @@ const FeaturedProducts = () => {
     .map((product) => {
       return { product };
     });
-  return <div>FeaturedProducts</div>;
+  console.log(myProducts);
+  return <div>TopSellingProducts</div>;
 };
 
-export default FeaturedProducts;
+export default TopSellingProducts;

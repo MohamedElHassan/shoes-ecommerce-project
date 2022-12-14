@@ -6,6 +6,9 @@ import { Register, Login, SingleProductPage, Error404 } from './components';
 import Layout from './Layout';
 import './App.scss';
 function App() {
+  fetch('http://localhost/projectSE/read.php')
+    .then((res) => res.json())
+    .then((data) => console.log(data));
   return (
     <>
       <BrowserRouter>

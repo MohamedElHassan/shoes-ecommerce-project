@@ -16,8 +16,12 @@ const Cart = () => {
   if (cartItems.length === 0) {
     return (
       <>
-        <h2>No Items in the Cart, Go add Them</h2>
-        <Link to="/products">Go to Products</Link>
+        <div className="no-cart-items">
+          <h2>No Items in the Cart, Go add Them</h2>
+          <Link className="primary-btn" to="/products">
+            Go to Products
+          </Link>
+        </div>
       </>
     );
   }

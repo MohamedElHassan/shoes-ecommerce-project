@@ -54,7 +54,9 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     getProducts();
-    getCartItems();
+    if (localStorage.getItem('cartItems')) {
+      getCartItems();
+    }
   }, []);
 
   return (
