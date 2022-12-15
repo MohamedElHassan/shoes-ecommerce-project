@@ -3,9 +3,6 @@ import { Product, ProductsFilter } from '../../components';
 import './Products.scss';
 
 const Products = () => {
-  fetch('http://shoes-ecommerce-se.ezyro.com/products')
-    .then((res) => res.josn)
-    .then((data) => console.log(data));
   const { products } = useGlobalContext();
   return (
     <>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useGlobalContext } from '../../context';
@@ -6,6 +6,14 @@ import './CartSummary.scss';
 
 const CartSummary = ({ showBtn = true }) => {
   const { total } = useGlobalContext();
+  const [couponCode, setCouponCode] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (couponCode) {
+      alert(`You have entered "${couponCode}" coupon code👍`);
+      setCouponCode('');
+    }
+  };
   return (
     <>
       <div className="cart-summary">
@@ -19,11 +27,17 @@ const CartSummary = ({ showBtn = true }) => {
           <h5>${7}</h5>
         </div>
         {showBtn ? (
-          <form className="promo-code">
+          <form onSubmit={handleSubmit} className="promo-code">
             <div className="form-data">
               <label htmlFor="promo-code">Have a promo code ?</label>
               <br />
-              <input id="promo-code" type="text" placeholder="Enter Code" />
+              <input
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                id="promo-code"
+                type="text"
+                placeholder="Enter Code"
+              />
             </div>
             <button type="submit">Apply</button>
           </form>
