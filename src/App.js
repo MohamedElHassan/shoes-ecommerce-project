@@ -2,13 +2,19 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import { Cart, Products, Dashboard } from './containers';
-import { Register, Login, SingleProductPage, Error404 } from './components';
+import {
+  Register,
+  Login,
+  SingleProductPage,
+  Error404,
+  LearnThings,
+  Address,
+  Billing,
+  Delivery,
+} from './components';
 import Layout from './Layout';
 import './App.scss';
 function App() {
-  fetch('http://localhost/projectSE/read.php')
-    .then((res) => res.json())
-    .then((data) => console.log(data));
   return (
     <>
       <BrowserRouter>
@@ -22,8 +28,12 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/delivery" element={<Delivery />} />
+            <Route path="/billing" element={<Billing />} />
+            <Route path="/address" element={<Address />} />
           </Route>
           <Route path="*" element={<Error404 />} />
+          <Route path="/learn" element={<LearnThings />} />
         </Routes>
       </BrowserRouter>
     </>

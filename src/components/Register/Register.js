@@ -1,10 +1,38 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
 import './Register.scss';
 const Register = () => {
-  // هنا لو عاوزه تكتبي اي دالة او كود
-  {fetch()}
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('localhost/register.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  };
+
   return (
     <>
       {/* هنا اكتبي كود ال HTML عادي جدا. */}
@@ -14,7 +42,7 @@ const Register = () => {
       {/* for ---> htmlFor */}
       {/* onsubmit ---> onSubmit */}
       {/* عشان تكتبي كود JS بداخل ال JSX هتفتح قوسين كدا. زي مثلاً */}
-      
+
       <div className="hero">
         <div className="form-box">
           <div className="button-box">
@@ -38,7 +66,7 @@ const Register = () => {
           </div>
           {/* <!-- ----------------------------Regiater Form----------------------------- --> */}
 
-          <form  action="" id="register" className="input-group2">
+          <form onSubmit={handleSubmit} id="register" className="input-group2">
             {/* <!-- ----------------------FirstName Register---------------------- --> */}
 
             <div className="name">
@@ -48,7 +76,14 @@ const Register = () => {
                   <span>
                     <Icon icon="uil-user" className="login-icon"></Icon>
                   </span>
-                  <input name='id' type="text" className="input-field2" placeholder="" />
+                  <input
+                    name="id"
+                    type="text"
+                    className="input-field2"
+                    placeholder=""
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
                 </label>
               </div>
 
@@ -59,7 +94,13 @@ const Register = () => {
                   <span>
                     <Icon icon="uil:user" className="login-icon"></Icon>
                   </span>
-                  <input type="text" className="input-field2" placeholder="" />
+                  <input
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    type="text"
+                    className="input-field2"
+                    placeholder=""
+                  />
                 </label>
               </div>
             </div>
@@ -70,7 +111,13 @@ const Register = () => {
                 <span>
                   <Icon icon="uil:envelope-alt" className="login-icon"></Icon>
                 </span>
-                <input type="text" className="input-field" placeholder="" />
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="text"
+                  className="input-field"
+                  placeholder=""
+                />
               </label>
             </div>
 
@@ -83,6 +130,9 @@ const Register = () => {
                     <Icon icon="uil-eye-slash" className="login-icon"></Icon>
                   </span>
                   <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
                     type="password"
                     className="input-field2"
                     placeholder=""
@@ -97,6 +147,9 @@ const Register = () => {
                     <Icon icon="uil-eye-slash" className="login-icon"></Icon>
                   </span>
                   <input
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    name="confirm-password"
                     type="password"
                     className="input-field2"
                     placeholder=""
@@ -111,7 +164,7 @@ const Register = () => {
             </button>
             <div className="account">
               You have already account
-              <Link to='/login'>Sign In</Link>
+              <Link to="/login">Sign In</Link>
             </div>
           </form>
         </div>

@@ -39,6 +39,12 @@ const Navbar = () => {
           >
             About
           </Link>
+          <Link
+            className={activePage === '/dashboard' ? 'active' : ''}
+            to={'/dashboard'}
+          >
+            Dashboard
+          </Link>
         </div>
         <div className="navbar-right">
           <Link className="cart-btn" to={'/cart'}>

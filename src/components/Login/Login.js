@@ -1,7 +1,28 @@
+import { useState } from 'react';
 import './Login.scss';
 import images from '../../images';
 import { Link } from 'react-router-dom';
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('localhost/login.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((auth) => console.log(auth));
+    setEmail('');
+    setPassword('');
+  };
+
   return (
     <>
       <div className="hero">
@@ -28,7 +49,7 @@ const Login = () => {
 
           {/* <!-- ----------------------Login Form---------------------- --> */}
 
-          <form action="" id="login" className="input-group">
+          <form onSubmit={handleSubmit} id="login" className="input-group">
             <div className="social-icons">
               <img src={images.google} alt="" />
               <img src={images.twitter} alt="" />
@@ -49,6 +70,8 @@ const Login = () => {
                   <i className="uil uil-envelope-alt login-icon"></i>
                 </span>
                 <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   type="text"
                   className="input-field"
                   id="input-field"
@@ -65,7 +88,13 @@ const Login = () => {
                 <span>
                   <i className="uil uil-eye-slash login-icon"></i>
                 </span>
-                <input type="password" className="input-field" placeholder="" />
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  className="input-field"
+                  placeholder=""
+                />
               </label>
             </div>
 

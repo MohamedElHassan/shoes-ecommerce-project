@@ -1,0 +1,122 @@
+
+/* ----------------------Address start---------------------- */
+
+.links{
+  margin: 4rem 5rem;
+  font-size: 30px;
+}
+
+form{
+  margin: 3rem 5rem;
+}
+
+.input-field2{
+  width: 75%;
+  margin: 15px 0;
+  padding: 10px 0;
+  background-color: #F4F2F2;
+  border: 4px solid #F4F2F2;
+  border-radius: 4px;
+}
+
+
+.name{
+  display: grid;
+  grid-template-columns: repeat(2,0.2fr);
+  gap: 0;
+}
+
+.btn-icon{
+  position: relative;
+}
+
+.btn-icon span{
+  position: absolute;
+  left: 190px;
+  top: 27px;
+}
+
+.input-field{
+  width: 35%;
+  margin: 15px 0;
+  padding: 10px 0;
+  background-color: #F4F2F2;
+  border: 4px solid #F4F2F2;
+  border-radius: 4px;
+}
+
+.btn-icon2{
+  position: relative;
+}
+
+.btn-icon2 span{
+  position: absolute;
+  left: 467px;
+  top: 27px;
+}
+
+.town{
+  display: grid;
+  grid-template-columns: repeat(2,0.2fr);
+  gap: 0;
+}
+
+
+.btn-icon3{
+  position: relative;
+}
+
+.btn-icon3 span{
+  position: absolute;
+  left: 190px;
+  top: 27px;
+}
+
+.submit{
+  display: grid;
+  grid-template-columns: repeat(3,0.2fr);
+  gap: 0.1rem;
+}
+
+.submit{
+  margin: 30px 0;
+}
+
+.check-box{
+  margin: 10px 0;
+}
+
+.icon{
+  margin: 7px 0;
+}
+
+.Delivery-button{
+  width: 80%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  /* margin-top: 20px; */
+  background: #FF604A;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.summary{
+  margin-left: 55%;
+  margin-top: -23%;
+}
+
+.summary h2{
+  font-size: 30px;
+  margin: 30px 0;
+}
+
+.summary p{
+  margin: 10px 0;
+}
+
+.summary span{
+  margin-left: 20%;
+}

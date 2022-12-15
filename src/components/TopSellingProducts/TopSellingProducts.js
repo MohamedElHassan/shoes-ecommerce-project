@@ -16,7 +16,6 @@ const TopSellingProducts = () => {
     .map((product) => {
       return { product };
     });
-  console.log(myProducts);
   return <div>TopSellingProducts</div>;
 };
 

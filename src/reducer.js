@@ -66,7 +66,6 @@ const reducer = (state, action) => {
     //       return cartItem;
     //     })
     // : [{}];
-    // console.log(newCartItems);
   }
   if (action.type === 'REMOVE_CART_ITEM') {
     let newCartItems = state.cartItems.filter(
