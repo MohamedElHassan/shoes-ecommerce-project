@@ -7,10 +7,10 @@ import {
 } from 'react-icons/fa';
 import { TopPicksProducts } from '../../components';
 import { Link } from 'react-router-dom';
-
+import { CartSummary } from '../../components';
 import './Cart.scss';
 const Cart = () => {
-  const { cartItems, total, removeCartItem, toggleAmount, amount } =
+  const { cartItems, removeCartItem, toggleAmount, amount } =
     useGlobalContext();
 
   if (cartItems.length === 0) {
@@ -84,32 +84,7 @@ const Cart = () => {
               );
             })}
           </div>
-          <div className="cart-summary">
-            <h3>Summary</h3>
-            <div className="sub-total">
-              <p>Subtotal</p>
-              <h5>${total}</h5>
-            </div>
-            <div className="shipping-cost">
-              <p>Shipping cost</p>
-              <h5>${7}</h5>
-            </div>
-            <form className="promo-code">
-              <div className="form-data">
-                <label htmlFor="promo-code">Have a promo code ?</label>
-                <br />
-                <input id="promo-code" type="text" placeholder="Enter Code" />
-              </div>
-              <button type="submit">Apply</button>
-            </form>
-            <div className="total">
-              <p>Total</p>
-              <h5>${total}</h5>
-            </div>
-            <Link className="checkout-btn" to="/checkout">
-              Proceed to checkout
-            </Link>
-          </div>
+          <CartSummary />
         </div>
       </div>
       <TopPicksProducts />

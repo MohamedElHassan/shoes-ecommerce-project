@@ -14,6 +14,4 @@ export { default as TopPicksProducts } from './TopPicksProducts/TopPicksProducts
 export { default as FeaturedProducts } from './FeaturedProducts/FeaturedProducts';
 export { default as TopSellingProducts } from './TopSellingProducts/TopSellingProducts';
 export { default as LearnThings } from './LearnThings/LearnThings';
-export { default as Address } from './Address/Address';
-export { default as Billing } from './Billing/Billing';
-export { default as Delivery } from './Delivery/Delivery';
+export { default as CartSummary } from './CartSummary/CartSummary';
