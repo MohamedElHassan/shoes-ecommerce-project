@@ -94,6 +94,13 @@ const Navbar = () => {
           >
             About
           </Link>
+          <Link
+            className={activePage === '/dashboard' ? 'active' : ''}
+            to={'/dashboard'}
+            onClick={() => setToggleMenu(!toggleMenu)}
+          >
+            Dashboard
+          </Link>
           <div className="menu-icons">
             <Link
               className="cart-btn"
