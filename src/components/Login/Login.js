@@ -1,24 +1,34 @@
 import { useState } from 'react';
 import './Login.scss';
 import images from '../../images';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('localhost/login.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
+    // {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     email,
+    //     password,
+    //   }),
+    // }
+    fetch(`http://localhost/projectAPI/executelogin.php/email=${email}&password=${password}`)
       .then((res) => res.json())
-      .then((auth) => console.log(auth));
+      .then((auth) => {
+        console.log(auth);
+        // if (auth) {
+        //   navigate('/');
+        // }else {
+        //   console.log(auth);
+        // }
+      });
     setEmail('');
     setPassword('');
   };

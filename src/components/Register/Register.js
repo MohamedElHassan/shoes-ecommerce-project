@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
 import './Register.scss';
@@ -9,19 +9,19 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('localhost/register.php', {
+    fetch('http://localhost/projectAPI/creat.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
+        name: `${firstName}  ${lastName}`,
+        email,
+        password,
       }),
     })
       .then((res) => res.json())
@@ -31,6 +31,7 @@ const Register = () => {
     setEmail('');
     setPassword('');
     setConfirmPassword('');
+    navigate('/');
   };
 
   return (

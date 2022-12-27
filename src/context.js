@@ -15,6 +15,28 @@ const initialState = {
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // const getProducts = async () => {
+  //   const url = 'localhost/products.php';
+  //   const settings = {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   };
+  //   try {
+  //     const fetchResponse = await fetch(url);
+  //     // const products = await fetchResponse.json();
+  //     // return data;
+  //     console.log(products);
+  //     dispatch({ type: 'GET_PRODUCTS', payload: products });
+  //   } catch (error) {
+  //     // return error;
+  //     console.log(error);
+  //   }
+  // };
+
   const getProducts = () => {
     dispatch({ type: 'GET_PRODUCTS', payload: products });
   };

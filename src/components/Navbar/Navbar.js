@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaCartArrowDown, FaSearch, FaUser } from 'react-icons/fa';
-import { FiMenu } from 'react-icons/fi';
+import { FiMenu, FiUpload } from 'react-icons/fi';
 
 import { useGlobalContext } from '../../context';
 import './Navbar.scss';
@@ -61,6 +61,9 @@ const Navbar = () => {
                   : null
               }
             />
+          </Link>
+          <Link className="user-btn" to={'/upload'}>
+            <FiUpload className={activePage === '/upload' ? 'active' : null} />
           </Link>
         </div>
       </nav>
@@ -123,6 +126,15 @@ const Navbar = () => {
                     ? 'active'
                     : null
                 }
+              />
+            </Link>
+            <Link
+              className="user-btn"
+              to={'/upload'}
+              onClick={() => setToggleMenu(!toggleMenu)}
+            >
+              <FiUpload
+                className={activePage === '/upload' ? 'active' : null}
               />
             </Link>
           </div>

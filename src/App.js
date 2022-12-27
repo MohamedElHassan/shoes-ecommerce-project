@@ -8,6 +8,7 @@ import {
   SingleProductPage,
   Error404,
   LearnThings,
+  UploadProduct
 } from './components';
 import Layout from './Layout';
 import './App.scss';
@@ -26,6 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/upload" element={<UploadProduct />} />
           </Route>
           <Route path="*" element={<Error404 />} />
           <Route path="/learn" element={<LearnThings />} />

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useGlobalContext } from '../../context';
 import { CartSummary } from '../../components';
 import './Checkout.scss';
-import { redirect } from 'react-router-dom';
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
 const Checkout = () => {
   const { cartItems, total, amount } = useGlobalContext();
 
@@ -12,13 +12,40 @@ const Checkout = () => {
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [zipCode, setZipCode] = useState('');
+  const navigate = useNavigate();
   // const [totalPrice, TotalPrice] = useState(0)
   // const [products, setProducts] = useState([])
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submited');
+    const day = new Date().getDate().toString();
+    const month = new Date().getMonth().toString();
+    const year = new Date().getFullYear().toString();
     // use Async Await Code here
+    fetch('http://localhost/projectAPI/createorder.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: `${firstName}  ${lastName}`,
+        address,
+        city,
+        zip: zipCode,
+        date: `${year}/${month}/${day}`,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((response) => console.log(response));
     redirect('/register');
+    setFirstName('');
+    setLastName('');
+    setAddress('');
+    setCity('');
+    setZipCode('');
+    navigate('/');
   };
   return (
     <>
@@ -67,7 +94,9 @@ const Checkout = () => {
                 />
               </div>
               <button className="primary-btn" type="submit">
-                {amount > 1 ? `Purchase ${amount} Shoeses`: `Purchase ${amount} Shoes`}
+                {amount > 1
+                  ? `Purchase ${amount} Shoeses`
+                  : `Purchase ${amount} Shoes`}
               </button>
             </form>
           </div>

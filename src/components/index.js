@@ -15,3 +15,4 @@ export { default as FeaturedProducts } from './FeaturedProducts/FeaturedProducts
 export { default as TopSellingProducts } from './TopSellingProducts/TopSellingProducts';
 export { default as LearnThings } from './LearnThings/LearnThings';
 export { default as CartSummary } from './CartSummary/CartSummary';
+export { default as UploadProduct } from './UploadProduct/UploadProduct';
