@@ -6,7 +6,7 @@ import './ProductsFilter.scss'
 const ProductsFilter = () => {
   const { handlePriceRange, handleCategorySelect } = useGlobalContext()
   const [category, setCategory] = useState('All')
-  const [priceRange, setPriceRange] = useState(999)
+  const [priceRange, setPriceRange] = useState(2010)
   const handleSubmit = (e) => {
     e.preventDefault()
   }
@@ -72,7 +72,7 @@ const ProductsFilter = () => {
             id="price-range"
             type="range"
             min={50}
-            max={1000}
+            max={2050}
             value={priceRange}
             onChange={(e) => {
               setPriceRange(e.target.value)

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useGlobalContext } from '../../context';
 import { CartSummary } from '../../components';
 import './Checkout.scss';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
   const { cartItems, total, amount } = useGlobalContext();
 
@@ -17,6 +17,7 @@ const Checkout = () => {
   // const [products, setProducts] = useState([])
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(cartItems);
     const day = new Date().getDate().toString();
     const month = new Date().getMonth().toString();
     const year = new Date().getFullYear().toString();
@@ -39,13 +40,29 @@ const Checkout = () => {
         return res.json();
       })
       .then((response) => console.log(response));
-    redirect('/register');
-    setFirstName('');
-    setLastName('');
-    setAddress('');
-    setCity('');
-    setZipCode('');
-    navigate('/');
+    fetch('http://localhost/projectAPI/createsales.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        product_name: cartItems[0].name,
+        price: total,
+        quantity: amount,
+        date: `${year}/${month}/${day}`,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((response) => console.log(response));
+    // setFirstName('');
+    // setLastName('');
+    // setAddress('');
+    // setCity('');
+    // setZipCode('');
+    // navigate('/');
   };
   return (
     <>

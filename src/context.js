@@ -1,6 +1,12 @@
-import { useContext, createContext, useReducer, useEffect } from 'react';
+import {
+  useContext,
+  createContext,
+  useReducer,
+  useEffect,
+  useState,
+} from 'react';
 import reducer from './reducer';
-import { products } from './data';
+// import { products } from './data';
 const AppContext = createContext();
 
 const initialState = {
@@ -15,31 +21,41 @@ const initialState = {
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [products, setProducts] = useState([]);
+  let visited = false;
+  const getProducts = async () => {
+    const url = 'http://localhost/projectAPI/read.php';
+    // const settings = {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    // };
+    try {
+      const fetchProducts = await fetch(url);
+      const theProducts = await fetchProducts.json();
+      const products = theProducts.map((product) => {
+        let priceInt = parseInt(product.price);
 
-  // const getProducts = async () => {
-  //   const url = 'localhost/products.php';
-  //   const settings = {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   };
-  //   try {
-  //     const fetchResponse = await fetch(url);
-  //     // const products = await fetchResponse.json();
-  //     // return data;
-  //     console.log(products);
-  //     dispatch({ type: 'GET_PRODUCTS', payload: products });
-  //   } catch (error) {
-  //     // return error;
-  //     console.log(error);
-  //   }
-  // };
-
-  const getProducts = () => {
-    dispatch({ type: 'GET_PRODUCTS', payload: products });
+        return { ...product, price: priceInt };
+      });
+      // return data;
+      // console.log(products);
+      if (!visited) {
+        setProducts(products);
+        visited = true;
+      }
+      dispatch({ type: 'GET_PRODUCTS', payload: products });
+    } catch (error) {
+      // return error;
+      console.log(error);
+    }
   };
+
+  // const getProducts = () => {
+  //   dispatch({ type: 'GET_PRODUCTS', payload: products });
+  // };
   const getCartItems = () => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     dispatch({ type: 'GET_CART_ITEMS', payload: cartItems });

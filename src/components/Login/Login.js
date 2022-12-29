@@ -9,17 +9,10 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     email,
-    //     password,
-    //   }),
-    // }
-    fetch(`http://localhost/projectAPI/executelogin.php/email=${email}&password=${password}`)
+    fetch(
+      `http://localhost/projectAPI/executelogin.php?email=${email}&password=${password}`
+    )
+    
       .then((res) => res.json())
       .then((auth) => {
         console.log(auth);
@@ -31,6 +24,7 @@ const Login = () => {
       });
     setEmail('');
     setPassword('');
+    navigate('/');
   };
 
   return (
@@ -81,7 +75,10 @@ const Login = () => {
                 </span>
                 <input
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    console.log(e.target.value);
+                  }}
                   type="text"
                   className="input-field"
                   id="input-field"

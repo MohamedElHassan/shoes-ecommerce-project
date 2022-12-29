@@ -6,8 +6,9 @@ const reducer = (state, action) => {
     return { ...state, cartItems: action.payload };
   }
   if (action.type === 'CHANGE_PRICE_RANGE') {
+    let priceRange = parseInt(action.payload);
     let newProducts = state.products.filter(
-      (product) => product.price <= action.payload
+      (product) => product.price <= priceRange
     );
     return {
       ...state,
@@ -16,7 +17,7 @@ const reducer = (state, action) => {
   }
   if (action.type === 'CHANGE_CATEGORY') {
     let newProducts = state.products.filter(
-      (product) => product.category === action.payload
+      (product) => product.type === action.payload
     );
     return {
       ...state,

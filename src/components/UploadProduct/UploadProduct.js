@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './UploadProduct.scss';
 const UploadProduct = () => {
   const [name, setName] = useState('');
@@ -6,9 +7,31 @@ const UploadProduct = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
-  const [brand, setBrand] = useState('');
+  const [productId, setProductId] = useState('');
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetch('http://localhost/projectAPI/excutecategories.php', {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: category,
+      }),
+    })
+      .then((res) => {
+        console.log('excutecategories ' + res);
+        if (res.ok) {
+          console.log('Success');
+          return res.json();
+        } else {
+          console.log('Not Successful');
+        }
+      })
+      .then((message) => console.log(message));
     fetch('http://localhost/projectAPI/executeupload.php', {
       method: 'POST',
       headers: {
@@ -16,15 +39,15 @@ const UploadProduct = () => {
       },
       body: JSON.stringify({
         name,
-        image,
+        type: category,
+        img_url: image,
         price,
         description,
-        category,
-        brand,
+        productId,
       }),
     })
       .then((res) => {
-        console.log(res);
+        console.log('executeupload ' + res);
         if (res.ok) {
           console.log('Success');
           return res.json();
@@ -38,7 +61,8 @@ const UploadProduct = () => {
     setPrice('');
     setDescription('');
     setCategory('');
-    setBrand('');
+    setProductId('');
+    navigate('/products');
   };
 
   return (
@@ -46,6 +70,12 @@ const UploadProduct = () => {
       <div className="upload-product section__padding">
         <h1>Upload Product</h1>
         <form onSubmit={handleSubmit}>
+          <input
+            value={productId}
+            onChange={(e) => setProductId(e.target.value)}
+            type="text"
+            placeholder="Product Id"
+          />
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -75,12 +105,6 @@ const UploadProduct = () => {
             onChange={(e) => setCategory(e.target.value)}
             type="text"
             placeholder="Product Category"
-          />
-          <input
-            value={brand}
-            onChange={(e) => setBrand(e.target.value)}
-            type="text"
-            placeholder="Product Brand"
           />
           <button className="primary-btn" type="submit">
             Add Product
