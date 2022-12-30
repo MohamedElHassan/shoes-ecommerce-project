@@ -18,7 +18,6 @@ const SingleProductPage = () => {
       );
       const data = await response.json();
       setProduct(data[0]);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +50,7 @@ const SingleProductPage = () => {
           <button
             type="button"
             className="addToCart-btn primary-btn"
-            onClick={() => addToCart(product)}
+            onClick={() => addToCart({ ...product, id: paramsId })}
           >
             Add to cart
           </button>

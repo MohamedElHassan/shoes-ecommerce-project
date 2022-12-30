@@ -17,6 +17,7 @@ const initialState = {
   alert: { msg: '', show: false, type: '' },
   total: 0,
   amount: 0,
+  auth: 'No clients Found',
 };
 
 const AppProvider = ({ children }) => {
@@ -56,6 +57,9 @@ const AppProvider = ({ children }) => {
   // const getProducts = () => {
   //   dispatch({ type: 'GET_PRODUCTS', payload: products });
   // };
+  const setAuthUser = (auth) => {
+    dispatch({ type: 'SET_AUTH_USER', payload: auth });
+  };
   const getCartItems = () => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     dispatch({ type: 'GET_CART_ITEMS', payload: cartItems });
@@ -107,6 +111,7 @@ const AppProvider = ({ children }) => {
         removeCartItem,
         toggleAmount,
         setAlert,
+        setAuthUser,
       }}
     >
       {children}

@@ -12,7 +12,7 @@ import './Cart.scss';
 const Cart = () => {
   const { cartItems, removeCartItem, toggleAmount, amount } =
     useGlobalContext();
-
+  console.log(cartItems);
   if (cartItems.length === 0) {
     return (
       <>
@@ -35,17 +35,17 @@ const Cart = () => {
         <div className="cart">
           <div className="cart-items">
             {cartItems.map((item) => {
-              const { name, image, price, category, brand, cartID, amount } =
+              const { name, img_url, price, type, brand, cartID, amount } =
                 item;
               return (
                 <div key={cartID} className="item">
                   <div className="item-img">
-                    <img src={image} alt={name} />
+                    <img src={img_url} alt={name} />
                   </div>
                   <div className="item-details">
                     <h3>{name}</h3>
                     <h5>
-                      {category} {brand}
+                      {type} {brand}
                     </h5>
                     <div className="btns">
                       <button

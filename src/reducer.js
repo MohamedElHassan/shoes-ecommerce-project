@@ -1,4 +1,7 @@
 const reducer = (state, action) => {
+  if (action.type === 'SET_AUTH_USER') {
+    return { ...state, auth: action.payload };
+  }
   if (action.type === 'GET_PRODUCTS') {
     return { ...state, products: action.payload };
   }
@@ -30,6 +33,7 @@ const reducer = (state, action) => {
       cartID: new Date().getTime().toString(),
       amount: 1,
     };
+    console.log(myCartItem)
     let found = state.cartItems.find(
       (cartItem) => cartItem.id === myCartItem.id
     );

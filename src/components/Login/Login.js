@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useGlobalContext } from '../../context';
 import './Login.scss';
 import images from '../../images';
 import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
+  const { setAuthUser } = useGlobalContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [auth, setAuth] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -12,19 +15,22 @@ const Login = () => {
     fetch(
       `http://localhost/projectAPI/executelogin.php?email=${email}&password=${password}`
     )
-    
       .then((res) => res.json())
-      .then((auth) => {
-        console.log(auth);
-        // if (auth) {
-        //   navigate('/');
-        // }else {
-        //   console.log(auth);
-        // }
+      .then((authMessage) => {
+        console.log(authMessage.message);
+        setAuth(authMessage.message);
+        if (authMessage.message === 'No clients Found') {
+          setEmail('');
+          setPassword('');
+        }
+        if (authMessage.message === 'good') {
+          setAuthUser('good');
+          setEmail('');
+          setPassword('');
+          navigate('/');
+        }
       });
-    setEmail('');
-    setPassword('');
-    navigate('/');
+    console.log(auth);
   };
 
   return (
@@ -77,7 +83,6 @@ const Login = () => {
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
-                    console.log(e.target.value);
                   }}
                   type="text"
                   className="input-field"
