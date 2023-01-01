@@ -81,6 +81,9 @@ const AppProvider = ({ children }) => {
   const removeCartItem = (id) => {
     dispatch({ type: 'REMOVE_CART_ITEM', payload: id });
   };
+  const removeAllCartItem = () => {
+    dispatch({ type: 'REMOVE_ALL_CART_ITEM' });
+  };
   const setTotalAndAmount = () => {
     dispatch({ type: 'GET_TOTAL_AND_AMOUNT' });
   };
@@ -112,6 +115,7 @@ const AppProvider = ({ children }) => {
         toggleAmount,
         setAlert,
         setAuthUser,
+        removeAllCartItem,
       }}
     >
       {children}

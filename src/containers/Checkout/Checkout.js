@@ -5,7 +5,7 @@ import { CartSummary } from '../../components';
 import './Checkout.scss';
 import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
-  const { cartItems, total, amount } = useGlobalContext();
+  const { cartItems, total, amount, removeAllCartItem } = useGlobalContext();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -57,12 +57,13 @@ const Checkout = () => {
         return res.json();
       })
       .then((response) => console.log(response));
-    // setFirstName('');
-    // setLastName('');
-    // setAddress('');
-    // setCity('');
-    // setZipCode('');
-    // navigate('/');
+    setFirstName('');
+    setLastName('');
+    setAddress('');
+    setCity('');
+    setZipCode('');
+    removeAllCartItem();
+    navigate('/');
   };
   return (
     <>
